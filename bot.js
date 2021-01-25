@@ -40,9 +40,34 @@ client.on('message', async function (message) {
                     acc += cur.entries
                     return acc
                 }, 0)
+                let descriptionText = "";
+                if ((pageNumber - 1) * 10 >= result.length) {
+                  pageNumber = Math.ceil(result.length / 10)
+                }
+                for (
+                  let i = (pageNumber - 1) * 10;
+                  i < pageNumber * 10 && result[i];
+                  i++
+                ) {
+                  descriptionText += `${i + 1}. ${result[i].username} - ${result[i].entries}\n`;
+                }
+                let footerMessage = `Page ${pageNumber} of ${Math.ceil(
+                  result.length / 10
+                )}`;
+                if (result.length > pageNumber * 10) {
+                  footerMessage += ` | Do ${config.prefix}info ${
+                    pageNumber + 1
+                    } to proceed to the next page`;
+                }
                 const listEmbed = new Discord.MessageEmbed()
                 .setTitle(`${total} Entries`)
-                .setColor("#ff00ff");
+                .setDescription(descriptionText)
+                .addField(
+                  "Controls",
+                  "React to this message with :gear: to show the list controls."
+                )
+                .setColor("#ff00ff")
+                .setFooter(footerMessage);
                 client.channels.cache.get(message.channel.id).send(listEmbed)
             })
       }
