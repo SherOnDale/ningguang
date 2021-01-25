@@ -7,5 +7,6 @@ module.exports = {
     prefix: process.env.PREFIX || 'n!',
     mongoUrl: process.env.MONGO_URL || '',
     ownerId: '361985924571332618',
-    retardedId: '407131163958837259'
+    retardedId: '407131163958837259',
+    port: process.env.PORT || 3000
 }
