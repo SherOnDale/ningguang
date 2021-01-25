@@ -69,6 +69,9 @@ client.on('message', async function (message) {
                 .setColor("#ff00ff")
                 .setFooter(footerMessage);
                 client.channels.cache.get(message.channel.id).send(listEmbed)
+                .then((embedMessage) => {
+                  embedMessage.react("⚙");
+                });
             })
       }
     }
