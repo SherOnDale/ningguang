@@ -67,6 +67,9 @@ client.on('message', async function (message) {
                 let shouldAdd = true
                 if(doc.lastSentOn > Date.now() - (1000 * 60 * 60)) {
                     shouldAdd = false
+                    const secondsRemaining = 3600 - ((Date.now() - doc.lastSentOn) / 1000)
+                    client.channels.cache.get(config.botSpamId).send('<@' + message.author.id + '>, your cooldown ends in ' + Math.floor(secondsRemaining).toString()
+                     + ' minute(s) and ' + secondsRemaining % 60 + ' second(s)')
                 }
 
                 if(shouldAdd) {

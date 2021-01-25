@@ -8,5 +8,6 @@ module.exports = {
     mongoUrl: process.env.MONGO_URL || '',
     ownerId: '361985924571332618',
     retardedId: '407131163958837259',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    botSpamId: '794665260186730528'
 }
