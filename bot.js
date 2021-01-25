@@ -38,19 +38,18 @@ client.on('message', async function (message) {
           mongoService
             .getClient()
             .db()
-            .collection('event-cryz')
+            .collection('event')
             .find()
             .toArray()
             .then((result) => {
-                const listEmbed = new Discord.MessageEmbed()
-                .setTitle(`${result.length} Entries`)
-                result.reduce((acc, cur) => {
-                    if(!acc.find(i => i.id === cur.id)) acc.push
-                    if(!acc[cur.id]) acc[cur.id] = {}
-                    acc[cur.id].username = cur.username
-                    acc[cur.id].count = acc[cur.id].count? aacc[cur.id].count++ : 1
+                const total = result.reduce((acc, cur) => {
+                    acc = cur.entries
                     return acc
-                }, {})
+                }, 0)
+                const listEmbed = new Discord.MessageEmbed()
+                .setTitle(`${total} Entries`)
+                .setColor("#ff00ff");
+                client.channels.cache.get(message.channel.id).send(listEmbed)
             })
       }
     }
@@ -65,7 +64,7 @@ client.on('message', async function (message) {
             .findOne({id: message.author.id})
             .then((doc) => {
                 let shouldAdd = true
-                if(doc.lastSentOn > Date.now() - (1000 * 60 * 60)) {
+                if(doc && doc.lastSentOn > Date.now() - (1000 * 60 * 60)) {
                     shouldAdd = false
                     const secondsRemaining = 3600 - Math.floor((Date.now() - doc.lastSentOn) / 1000)
                     client.channels.cache.get(config.botSpamId).send('<@' + message.author.id + '>, your cooldown ends in ' + Math.floor(secondsRemaining / 60).toString()
