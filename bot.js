@@ -18,7 +18,7 @@ client.on("ready", function (evt) {
 client.on('message', async function (message) {
     if(message.author.bot) return
 
-    if (message.content.startsWith(prefix)) {
+    if (message.content.startsWith(config.prefix)) {
       const args = message.content
         .slice(config.prefix.length)
         .trim()
