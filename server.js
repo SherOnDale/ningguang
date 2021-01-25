@@ -2,6 +2,10 @@ const config = require('./config')
 const mongoService = require("./services/mongodb");
 const express = require('express')
 
+mongoService.initClient(() => {
+  console.log("Connected to the database");
+});
+
 const app = express()
 
 app.get('/', (req, res) => {
