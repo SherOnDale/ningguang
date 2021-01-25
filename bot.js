@@ -34,6 +34,7 @@ client.on('message', async function (message) {
             .db()
             .collection('event')
             .find()
+            .sort({entries: -1})
             .toArray()
             .then((result) => {
                 const total = result.reduce((acc, cur) => {
