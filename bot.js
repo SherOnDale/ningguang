@@ -25,14 +25,8 @@ client.on('message', async function (message) {
         .toLowerCase()
         .split(/ +/g);
       const commandName = args.shift().toLowerCase();
-  
-      const command =
-        client.commands.get(commandName) ||
-        client.commands.find(
-          (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
-        );
 
-      if(command === 'info') {
+      if(commandName === 'info') {
           let pageNumber = Number.parseInt(args[0])
           if (Number.isNaN(pageNumber) || pageNumber < 1) pageNumber = 1;
           mongoService
