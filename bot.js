@@ -37,7 +37,7 @@ client.on('message', async function (message) {
             .toArray()
             .then((result) => {
                 const total = result.reduce((acc, cur) => {
-                    acc = cur.entries
+                    acc += cur.entries
                     return acc
                 }, 0)
                 const listEmbed = new Discord.MessageEmbed()
