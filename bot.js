@@ -24,7 +24,7 @@ client.on('message', async function (message) {
             .getClient()
             .db()
             .collection('event-cryz')
-            .find({}, {
+            .find({id: message.author.id}, {
                 sort: {
                     sentOn: -1
                 },
