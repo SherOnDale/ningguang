@@ -76,7 +76,7 @@ client.on('message', async function (message) {
                 client.channels.cache.get(message.channel.id).send(listEmbed)
                 .then((embedMessage) => {
                   embedMessage.react("⚙");
-                  client.lists(message.author.id) = embedMessage
+                  client.lists[message.author.id] = embedMessage
                 });
             })
       }
