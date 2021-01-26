@@ -95,6 +95,30 @@ client.on('message', async function (message) {
           })
         }
       }
+
+      if(commandName === 'raffle') {
+        if(message.author.id !== config.ownerId) {
+          message.reply('I only listen to my goshujinsama')
+        } else {
+          mongoService
+            .getClient()
+            .db()
+            .collection('event')
+            .find()
+            .toArray()
+            .then((result) => {
+              const entries = []
+              for(let i = 0; i < result.length; i++) {
+                for(let j = 0; j < result[i].entries; j++) {
+                  entries.push(result[i].id)
+                }
+              }
+              console.log(entries.length)
+              const winner = Math.floor(Math.random() * entries.length);
+              client.channels.cache.get(message.channel.id).send('(Testing) Congrats <@' + winner + '>, You won!')
+            })
+        }
+      }
     }
 
     try {
