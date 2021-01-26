@@ -134,7 +134,7 @@ client.on('message', async function (message) {
               }
               shuffle(entries)
               const winner = Math.floor(Math.random() * entries.length);
-              client.channels.cache.get(message.channel.id).send('(Testing) Congrats <@' + entries[winner] + '>, You won!')
+              client.channels.cache.get(message.channel.id).send('Congrats <@' + entries[winner] + '>, You won!')
             })
         }
       }
