@@ -80,6 +80,21 @@ client.on('message', async function (message) {
                 });
             })
       }
+
+      if(commandName === 'delete') {
+        if(message.author.id !== config.ownerId) {
+          message.reply('I only listen to my goshujinsama')
+        } else if(args[0]) {
+          const deleteUserId = args[0].substring(3, 21)
+          mongoService
+          .getClient()
+          .db()
+          .collection('event')
+          .deleteOne({
+            id: deleteUserId
+          })
+        }
+      }
     }
 
     try {

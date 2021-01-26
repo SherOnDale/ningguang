@@ -4,7 +4,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 module.exports = {
     botToken: process.env.BOT_TOKEN || '',
-    prefix: process.env.PREFIX || 'n!',
+    prefix: process.env.BOT_PREFIX || 'n!',
     mongoUrl: process.env.MONGO_URL || '',
     ownerId: '361985924571332618',
     retardedId: '732925200055795753',
