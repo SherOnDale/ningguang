@@ -113,9 +113,8 @@ client.on('message', async function (message) {
                   entries.push(result[i].id)
                 }
               }
-              console.log(entries.length)
               const winner = Math.floor(Math.random() * entries.length);
-              client.channels.cache.get(message.channel.id).send('(Testing) Congrats <@' + winner + '>, You won!')
+              client.channels.cache.get(message.channel.id).send('(Testing) Congrats <@' + entries[winner] + '>, You won!')
             })
         }
       }
