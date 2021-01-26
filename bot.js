@@ -166,8 +166,6 @@ client.on("messageReactionAdd", async (reaction, user) => {
         .collection('event')
         .find()
         .sort({entries: -1})
-        .skip((pageNumber - 1) * 10)
-        .limit(10)
         .toArray()
         .then((result) => {
           const total = result.reduce((acc, cur) => {
@@ -179,8 +177,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
             pageNumber = Math.ceil(result.length / 10)
           }
           for (
-            let i = 0;
-            i < 10 && result[i];
+            let i = (pageNumber - 1) * 10;
+            i < pageNumber * 10 && result[i];
             i++
           ) {
             descriptionText += `${i + 1}. ${result[i].username} - ${result[i].entries}\n`;
