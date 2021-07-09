@@ -25,7 +25,7 @@ client.on('message', async (msg) => {
          const fileUrl = msg.attachments.first().url
          console.log(fileUrl)
          const { data: { text } } = await worker.recognize(fileUrl);
-         const trimmedText = text.replaceAll(' ', '')
+         const trimmedText = text.replace(/\s/g, '')
          msg.reply(trimmedText)
      }
 })
